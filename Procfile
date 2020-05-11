@@ -1,1 +1,1 @@
-web: LISTEN_ADDR=0.0.0.0 PORT=80 bin/json-resume-validator-client
+web: bin/json-resume-validator-client
