@@ -6,3 +6,6 @@
 
 Sample client for [JSON Resume Validator](https://github.com/cinarmert/json-resume-validator)
 
+Give it a shot here: https://json-resume-validator.herokuapp.com/
+
+Inspired by: https://github.com/kelvintaywl/jsonresume-server
