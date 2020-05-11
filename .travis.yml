@@ -1,17 +1,21 @@
 language: go
 go:
-  - 1.13.x
-
+- 1.13.x
 install:
-  - go get -u golang.org/x/lint/golint
-  - go mod download
-
+- go get -u golang.org/x/lint/golint
+- go mod download
 before_script:
-  - test -z "$(gofmt -s -l -w . | tee /dev/stderr)"
-  - test -z "$(golint . | tee /dev/stderr)"
-  - go vet -v ./...
-  - go test -race -coverprofile=coverage.txt -covermode=atomic ./...
-
+- test -z "$(gofmt -s -l -w . | tee /dev/stderr)"
+- test -z "$(golint . | tee /dev/stderr)"
+- go vet -v ./...
+- go test -race -coverprofile=coverage.txt -covermode=atomic ./...
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
-
+- bash <(curl -s https://codecov.io/bash)
+deploy:
+  provider: heroku
+  api_key:
+    secure: Gx39wF1qofO2zS6+IC6v8UMfqEP2NAYCr+2pPmM1Zt2BWz9gGkbaLN1TR7nKZ5c2XToxlsfXv3+30FDT0wfDOTX+rlbN3nbfo2NI3eofD0Lsnvpbbhv2HMhbN+zSZ8NYgzEklX3AuYFJlYVaMvFhLi/v9o+yw6RnwamHdYP6QGX5dQno03n4JBodNju/z0o6lR/ZSzcsQAsq0fF82vxWhL0BfvCZxRnfdlqL/xpKyBeEbRd2js9v4dT3INAN0KIa/6xbt3xUfcHgd4yNTcdGeUtrPqp3HGLcPrvihItck+fV6swqCH7ZFPpBlFy/5Mw7AurZG5PYQCTVCgvcB6ssbR7DSKRaVby5KmyMw1pQCEFlXJUIyjU8vM/dhzGU04UTVoPSNHEd98H+Gk3d+IRA6ylNVF2B1BHi7CqM7HArZ3CVVfqfp7W7tkJWEhKf3T07ZV1smfjtuCzhpu03+3HBTJ4zf1nUZvPIIco8ziq2ap6MX7ummdR1PewJO1I8TH/lOj97DAu95tn0QMrh7qfZ2552KpZQQhl/dl4Lx47pnTmRphVtaRmXEgdP0w+HuV0M2sg97sVeD0HRyehrAWPFvniE0k6cVrCRoHpIgv/D6azDvywOXGSmonCOaAFx+5cc0gyEHg1gDIVLE4OUTXPkIJaGUslU3fyS1bUDBWNS14E=
+  app: json-resume-validator
+  on:
+    repo: cinarmert/json-resume-validator-client
+  skip_cleanup: 'true'
