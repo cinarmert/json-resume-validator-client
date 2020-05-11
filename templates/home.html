@@ -1,0 +1,42 @@
+<!doctype HTML>
+<head>
+    <title>JSON Resume Validator</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+<style>
+    body > .grid {
+        height: 100%;
+    }
+</style>
+<body style="background-color: #22063b;">
+<div class="ui middle aligned center aligned grid">
+    <div class="column" style="max-width: 450px;">
+        <h2 class="ui image grey header" style="margin-top: -100px;">
+            <div class="content">
+                Validate Your <a href="http://jsonresume.org">JSON Resume</a> here
+            </div>
+        </h2>
+
+        <form id="file-submit-form" class="ui large form" method="post" enctype="multipart/form-data" action="/validateFile">
+            <div class="ui stacked segment">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <input type="file" name="file" accept="application/json">
+                    </div>
+                </div>
+                <button id="submit-btn" class="ui fluid large blue submit button" type="submit">Validate</button>
+            </div>
+        </form>
+
+        <div class="ui info message">
+            <a href="https://github.com/cinarmert/json-resume-validator-client" target="_blank">Code on Github</a>
+        </div>
+
+        <div class="ui success message">
+            <h3>{{.Status}}</h3>
+        </div>
+    </div>
+</div>
+</body>
